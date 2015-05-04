@@ -1,5 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# hashtool - hashing of entire trees of files
+# Copyright (C) 2015 - Felipe Machado
+#
+#
 
 import os.path
 import argparse

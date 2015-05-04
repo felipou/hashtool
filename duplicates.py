@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+#
+# hashtool - hashing of entire trees of files
+# Copyright (C) 2015 - Felipe Machado
+#
+#
 
 from __future__ import print_function
 

@@ -12,8 +12,11 @@ Currently it has 3 functions:
 - duplicates: checks for duplicates in a hash database by simply searching
     for multiple occurrences of the hash of each file
 
+Hashtool is licensed under the GPLv2. For more information, check the LICENSE
+file.
 
 ## Requirements
 
 Hashtool is built for both Python 2 and Python 3 (using the future library to
 help maintain the compatibility), but we suggest using Python 3.
+
