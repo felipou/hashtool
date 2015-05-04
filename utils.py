@@ -5,15 +5,20 @@
 #
 #
 
+# Python future imports
 from __future__ import print_function
 from __future__ import unicode_literals
 
+# Dependencies
 from builtins import str
 
+# Python standard library
 import json
 import gzip
 import re
 import os.path
+
+
 
 ###############################################################################
 def loadHashDBFile( filename ):

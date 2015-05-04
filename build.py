@@ -5,8 +5,10 @@
 #
 #
 
+# Python future imports
 from __future__ import print_function
 
+# Python stanrad library
 import sys
 import os
 import os.path
@@ -15,6 +17,7 @@ import json
 import math
 import argparse
 import datetime
+
 
 
 ###############################################################################
@@ -82,8 +85,13 @@ def createFilesInfoTable( path, files_info={} ):
             total_size += file_size
 
     return ( files_info, total_size )
+###############################################################################
 
 
+
+###############################################################################
+# Public function #
+###################
 def buildTreeHash( args ):
     root_folder = args.path
     output_file = args.out

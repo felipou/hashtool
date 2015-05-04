@@ -5,13 +5,18 @@
 #
 #
 
+# Python future imports
 from __future__ import print_function
 
-from utils import loadHashDBFile, shouldIgnore
-
+# Python standard library
 import gzip
 import os.path
 import re
+
+# Local imports
+from utils import loadHashDBFile, shouldIgnore
+
+
 
 ###############################################################################
 def get_hash_db( files_db ):
@@ -54,8 +59,13 @@ def get_folders( file_list ):
         folders[ fdir ] = folders.get( fdir, 0 ) + 1
 
     return folders
+###############################################################################
 
 
+
+###############################################################################
+# Public function #
+###################
 def compare( config ):
 
     d1 = loadHashDBFile( config.hash_db1 )

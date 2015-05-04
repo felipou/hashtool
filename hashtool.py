@@ -6,20 +6,26 @@
 #
 #
 
+# Python standard library
 import os.path
 import argparse
 import hashlib
 
+# Local imports
 from build import buildTreeHash
 from duplicates import findDuplicates
 from compare import compare
 
 
+
 ###############################################################################
+# Helper functions #
+####################
 def inexistentFile(x):
     if os.path.exists(x):
         raise argparse.ArgumentTypeError( "{0} already exists".format(x) )
     return os.path.abspath(x)
+
 
 def isFolder(x):
     if os.path.exists(x) and os.path.isdir(x):
@@ -28,12 +34,14 @@ def isFolder(x):
     raise argparse.ArgumentTypeError(
         "{0} is not an existing folder".format(x) )
 
+
 def isFile(x):
     if os.path.exists(x) and os.path.isfile(x):
         return os.path.abspath(x)
 
     raise argparse.ArgumentTypeError(
         "{0} is not an existing file".format(x) )
+
 
 def commaSplitString( x ):
     hash_functions = x.split(',')
@@ -45,11 +53,15 @@ def commaSplitString( x ):
 
     return hash_functions
 
+
+# Argument parsing function
 def parseArgs():
     parser = argparse.ArgumentParser()
 
     subparsers = parser.add_subparsers( dest='command' )
 
+
+    # build command options
     parser_build = subparsers.add_parser( 'build' )
     parser_build.add_argument( 'path', type=isFolder )
     parser_build.add_argument( '-o', '--out', metavar='OUTPUT_FILE',
@@ -58,6 +70,8 @@ def parseArgs():
                                type=commaSplitString, default=["sha1"] )
     parser_build.set_defaults( func=buildTreeHash )
 
+
+    # find_duplicates command options
     parser_duplicates = subparsers.add_parser( 'find_duplicates' )
     parser_duplicates.add_argument( 'hash_db', type=isFile )
     parser_duplicates.add_argument( '-p', '--print-single-files',
@@ -76,6 +90,8 @@ def parseArgs():
                                     type=str, default=None )
     parser_duplicates.set_defaults( func=findDuplicates )
 
+
+    # compare command options
     parser_compare = subparsers.add_parser( 'compare' )
     parser_compare.add_argument( 'hash_db1', type=isFile )
     parser_compare.add_argument( 'hash_db2', type=isFile )
@@ -87,6 +103,7 @@ def parseArgs():
                                  default=False )
     parser_compare.set_defaults( func=compare )
 
+
     args = parser.parse_args()
 
     if not args.command:
@@ -94,7 +111,17 @@ def parseArgs():
         exit(1)
 
     return args
+###############################################################################
 
+
+
+###############################################################################
+# __  __    _    ___ _   _
+#|  \/  |  / \  |_ _| \ | |
+#| |\/| | / _ \  | ||  \| |
+#| |  | |/ ___ \ | || |\  |
+#|_|  |_/_/   \_\___|_| \_|
+#
 def main():
     args = parseArgs()
     args.func(args)

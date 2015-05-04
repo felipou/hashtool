@@ -5,12 +5,17 @@
 #
 #
 
+# Python future imports
 from __future__ import print_function
 
+# Python standard library
 import os.path
 import re
 
+# Local imports
 from utils import loadHashDBFile, formatDataSize, shouldIgnore
+
+
 
 ###############################################################################
 FOLDER_HAS_DUPLICATES = 0
@@ -38,8 +43,13 @@ def updateFoldersStates( folders_data, file_path, is_original ):
         else:
             folders_data[ current_path ] = ( FOLDER_HAS_ORIGINALS if is_original
                 else FOLDER_HAS_DUPLICATES )
+###############################################################################
 
 
+
+###############################################################################
+# Public function #
+###################
 def findDuplicates( config ):
     file_db = loadHashDBFile( config.hash_db )
 
